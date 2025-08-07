@@ -1,0 +1,2 @@
+# JS
+Daily Javascript practice
