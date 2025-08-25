@@ -23,9 +23,14 @@
       let wins=0;
       let losses=0;
       let ties=0;
-      const scorecard= {'wins': wins, 'losses':losses , 'ties':ties };
+      let scorecard= JSON.parse(localStorage.getItem('scorecard')) || {'wins': wins, 'losses':losses , 'ties':ties };
+      
      
-
+     
+        function reset(){
+            scorecard= {'wins': 0, 'losses':0 , 'ties':0 };
+            document.querySelector(".score-card").innerHTML = `Wins: ${scorecard.wins}, Losses: ${scorecard.losses}, Ties: ${scorecard.ties}`;
+         }
 
       function playgame(move) {
         const playerMove = move;
@@ -42,6 +47,9 @@
         const score = result(move, computerMove);
         document.querySelector(".result-card").innerHTML= score;
         document.querySelector(".display-card").innerHTML= `You ${move} - ${computerMove} Computer`;
+
+        localStorage.setItem('scorecard',JSON.stringify(scorecard));
+        scorecard= JSON.parse(localStorage.getItem('scorecard'));
         document.querySelector(".score-card").innerHTML = `Wins: ${scorecard.wins}, Losses: ${scorecard.losses}, Ties: ${scorecard.ties}`;
       }
 
