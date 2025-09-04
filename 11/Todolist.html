@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>
+    <style>
+        .grid {
+            display:grid;
+            grid-template-columns: 300px 200px 100px;
+            column-gap:20px;
+        }
+    </style>
+</head>
+<body>
+    <p>Todo List</p>
+    
+    <div class="grid">
+        <input class='todo' placeholder="Todo name">
+            <input class='date' type = 'date'>
+            <button class="button" onclick='add()'>Add</button> 
+            <div class="display"></div>
+    </div>
+    
+    <script>
+       const value_todo=[];
+       function render(){
+            let i=0;
+            let html='';
+            while(i<value_todo.length){
+                html+=`<p>${value_todo[i].name} ${value_todo[i].date}<button class='delete' onclick='value_todo.splice(${i},1); render();'>Delete</button></p>`;
+                i++;
+            }
+            document.querySelector('.display').innerHTML = html;
+            
+       }
+        function add(){
+            
+            let finalhtml = ''; 
+
+            let name=document.querySelector('.todo').value;
+                let date= document.querySelector('.date').value;
+
+                    value_todo.push({name : name,
+                               date : date
+                    });
+
+            for (let i=0;i<=value_todo.length-1;i++){
+                
+                finalhtml+=`<p>${value_todo[i].name} ${value_todo[i].date}<button class='delete' onclick='value_todo.splice(${i},1); render();'>Delete</button></p>`;
+                render();
+          
+            }
+            document.querySelector('.display').innerHTML=finalhtml;
+            
+        }
+  
+    </script>
+</body>
+</html>

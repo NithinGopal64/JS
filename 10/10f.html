@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10e</title>
+    <style>
+        .button{
+            padding:10px;
+            border:none;
+            border-radius:4px;
+            width:80px;
+        }
+        .bolden{
+            background-color: rgb(56, 55, 55);
+            color:white;
+            border:none;
+            
+        }
+    </style>
+</head>
+<body>
+    <button class="button gaming" onclick="bolden('gaming')">Gaming</button>
+        <button class="button music" onclick="bolden('music')">Music</button>
+
+            <button class="button tech" onclick="bolden('tech')">Tech</button>
+
+<script>
+    function bolden(num){
+        const prevElement=document.querySelector('.bolden');
+                const buttonElement=document.querySelector(`.${num}`);
+
+        if (prevElement && prevElement!==buttonElement){
+            prevElement.classList.remove('bolden');
+        }
+
+
+        if (buttonElement.classList.contains('bolden'))
+             buttonElement.classList.remove('bolden');
+        else
+                     buttonElement.classList.add('bolden');
+
+    }
+</script>
+</body>
+</html>
