@@ -1,4 +1,4 @@
-import {cart,handlerAddToCart,cartQuantity,removeFromCart} from '../data/cart.js';
+import {cart,handlerAddToCart,cartQuantity,removeFromCart,totalCartItems} from '../data/cart.js';
 import {products} from '../data/products.js';
 
 

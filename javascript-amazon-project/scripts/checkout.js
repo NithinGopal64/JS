@@ -1,4 +1,4 @@
-import {cart,removeFromCart} from '../data/cart.js';
+import {cart,removeFromCart,totalCartItems,updateCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 let html = '';
 let matchingProduct;
@@ -27,11 +27,13 @@ cart.forEach((cartItem)=>{
                 </div>
                 <div class="product-quantity">
                   <span>
-                    Quantity: <span class="quantity-label">2</span>
+                    Quantity: <span class="quantity-label js-quantity-label">2</span>
                   </span>
-                  <span class="update-quantity-link link-primary">
+                  <span class="update-quantity-link link-primary js-update-cart" data-product-id = '${matchingProduct.id}'>
                     Update
                   </span>
+                  <input class='input-${matchingProduct.id} quantity-input'>
+                  <span class='save-${matchingProduct.id} save-quantity-link link-primary'>Save</span>
                   <span class="delete-quantity-link link-primary js-delete-quantity" data-product-id = '${matchingProduct.id}'>
                     Delete
                   </span>
@@ -87,9 +89,18 @@ cart.forEach((cartItem)=>{
     
 });
 document.querySelector('.order-summary').innerHTML=html;
-
+document.querySelector('.return-to-home-link').innerText= totalCartItems() + ' items';
 
 const deleteAction = document.querySelectorAll('.js-delete-quantity');
 deleteAction.forEach((button)=>{    
-    button.addEventListener('click',()=>{removeFromCart(button)});    
+    button.addEventListener('click',()=>{removeFromCart(button)});  
 }); 
+
+const updateCartButtons = document.querySelectorAll('.js-update-cart');
+updateCartButtons.forEach((button)=>{
+    button.addEventListener('click',()=>{
+      updateCart(button);
+    })
+
+   })
+
