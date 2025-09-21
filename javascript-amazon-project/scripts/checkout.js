@@ -1,7 +1,8 @@
-import {cart} from '../data/cart.js';
+import {cart,removeFromCart} from '../data/cart.js';
 import {products} from '../data/products.js';
 let html = '';
 let matchingProduct;
+// cart=JSON.parse(localStorage.getItem('cart'));
 cart.forEach((cartItem)=>{
     const productID=cartItem.id;
     products.forEach((prod)=>{
@@ -86,11 +87,9 @@ cart.forEach((cartItem)=>{
     
 });
 document.querySelector('.order-summary').innerHTML=html;
+
+
 const deleteAction = document.querySelectorAll('.js-delete-quantity');
-deleteAction.forEach((button)=>{
-    button.addEventListener('click',()=>{
-        const deleteID = button.dataset.productId;
-        console.log(`.cart-item-container-${deleteID}`);
-        document.querySelector(`.cart-item-container-${deleteID}`).remove();   
-    })   
+deleteAction.forEach((button)=>{    
+    button.addEventListener('click',()=>{removeFromCart(button)});    
 }); 
