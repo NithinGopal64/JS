@@ -78,50 +78,51 @@ export function updateCart(button){
     const inputQuantity = document.querySelector(`.input-${ProductId}`);
     const saveQuantity = document.querySelector(`.save-${ProductId}`);
     
-    saveQuantity.addEventListener('click', () => {
-      inputQuantity.classList.remove('quantity-input2'); 
-      button.classList.remove('update-quantity2'); 
-      saveQuantity.classList.remove('save-quantity-link2'); 
-
-      const inputValue = (inputQuantity.value);
-      
-      if (inputValue==='0'){
-        removeFromCart(button);
-      }
-      else if (Number.isNaN(Number(inputValue)) || typeof Number(inputValue) !== 'number' ){ 
-      }
-      else if (inputValue===''){
-
-      }
-      
-
-      else{
-            document.querySelector(`.update-quantity-link-${ProductId}`).innerText = Number(inputValue);
-            cart.forEach((cartItem)=>{
-              if (cartItem.id===ProductId){
-                cartItem.quantity = Number(inputValue);
-              }
-            });
-            localStorage.setItem('cart',JSON.stringify(cart));
-            if (totalCartItems()===1){
-                 document.querySelector('.return-to-home-link').innerText = ' 1 item';
-            }
-            else{
-              document.querySelector('.return-to-home-link').innerText= totalCartItems() + ' items';
-            }
-           
-      }
-  
+    saveQuantity.addEventListener('click', () => {updateCartCheckout();
+    });
+    inputQuantity.addEventListener('keydown', (event) => {if (event.key=== "Enter"){
+              updateCartCheckout();
+    }
     });
 
       inputQuantity.classList.add('quantity-input2') ;
       button.classList.add('update-quantity2');
       saveQuantity.classList.add('save-quantity-link2');
-      
-    
-  
-   
 
+      function updateCartCheckout(){
+        inputQuantity.classList.remove('quantity-input2'); 
+        button.classList.remove('update-quantity2'); 
+        saveQuantity.classList.remove('save-quantity-link2'); 
+
+        const inputValue = (inputQuantity.value);
+        
+        if (inputValue==='0'){
+          removeFromCart(button);
+        }
+        else if (Number.isNaN(Number(inputValue)) || typeof Number(inputValue) !== 'number' ){ 
+        }
+        else if (inputValue===''){
+
+        }
+        
+
+        else{
+              document.querySelector(`.update-quantity-link-${ProductId}`).innerText = Number(inputValue);
+              cart.forEach((cartItem)=>{
+                if (cartItem.id===ProductId){
+                  cartItem.quantity = Number(inputValue);
+                }
+              });
+              localStorage.setItem('cart',JSON.stringify(cart));
+              if (totalCartItems()===1){
+                  document.querySelector('.return-to-home-link').innerText = ' 1 item';
+              }
+              else{
+                document.querySelector('.return-to-home-link').innerText= totalCartItems() + ' items';
+              }
+            
+        }
+  }
 }
 
 
