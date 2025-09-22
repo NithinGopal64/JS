@@ -1,4 +1,4 @@
-
+// localStorage.removeItem('cart');
 export let cart=JSON.parse(localStorage.getItem('cart')) || [
     // {id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6", quantity:2},{id: "15b6fc6f-327a-4ec4-896f-486349e85a3d", quantity:2}
 ];
@@ -62,9 +62,7 @@ export function removeFromCart(button){
         if (totalCartItems1 === 1) document.querySelector('.return-to-home-link').innerText= totalCartItems1 + ' item';
         else{
             document.querySelector('.return-to-home-link').innerText= totalCartItems1 + ' items';
-        }
-        
-        
+        }     
 }
 
 export function totalCartItems(){
@@ -76,18 +74,40 @@ export function totalCartItems(){
 
   // Function for update, delete inside checkout page
 export function updateCart(button){
-    const ProductId = (button.dataset.productId);
-    
+    const ProductId = (button.dataset.productId); 
+
     const inputQuantity = document.querySelector(`.input-${ProductId}`);
     const saveQuantity = document.querySelector(`.save-${ProductId}`);
-    if (saveQuantity.addEventListener('click', () => {
+    
+    saveQuantity.addEventListener('click', () => {
       inputQuantity.classList.remove('quantity-input2'); 
       button.classList.remove('update-quantity2'); 
       saveQuantity.classList.remove('save-quantity-link2'); 
-    }));
+
+      const inputValue = (inputQuantity.value);
       
-    
-    
+      if (inputValue==='0'){
+        removeFromCart(button);
+      }
+      else if (Number.isNaN(Number(inputValue)) || typeof Number(inputValue) !== 'number' ){ 
+      }
+      else if (inputValue===''){
+
+      }
+      
+
+      else{
+            document.querySelector(`.update-quantity-link-${ProductId}`).innerText = Number(inputValue);
+            // cart.forEach((cartItem)=>{
+            //   if (cartItem.id===ProductId){
+            //     cartItem.quantity = Number(inputValue);
+            //   }
+            // });
+            //localStorage.setItem('cart',JSON.stringify(cart));
+      }
+  
+    });
+
       inputQuantity.classList.add('quantity-input2') ;
       button.classList.add('update-quantity2');
       saveQuantity.classList.add('save-quantity-link2');
