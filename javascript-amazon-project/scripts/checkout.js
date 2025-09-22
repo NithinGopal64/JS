@@ -1,8 +1,25 @@
 import {cart,removeFromCart,totalCartItems,updateCart} from '../data/cart.js';
 import {products} from '../data/products.js';
+import {deliveryOptions} from '../data/deliveryOptions.js';
 let html = '';
 let matchingProduct;
-// cart=JSON.parse(localStorage.getItem('cart'));
+
+console.log(deliveryOptions[0].days);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 cart.forEach((cartItem)=>{
     const productID=cartItem.id;
     products.forEach((prod)=>{
@@ -107,8 +124,7 @@ const updateCartButtons = document.querySelectorAll('.js-update-cart');
 updateCartButtons.forEach((button)=>{
     button.addEventListener('click',()=>{
       updateCart(button);
-      // let totalItems=totalCartItems();
-      // document.querySelector('.return-to-home-link').innerText= totalItems + ' items';
+      
     })
 
    })
