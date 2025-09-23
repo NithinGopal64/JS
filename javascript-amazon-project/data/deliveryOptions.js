@@ -4,7 +4,7 @@ const today = dayjs();
 export const deliveryOptions = [
   {
     id: 1,
-    days: today.add(5, "days").format("dddd, MMMM D"),
+    days: today.add(7, "days").format("dddd, MMMM D"),
     priceCents: 0,
   },
   {
