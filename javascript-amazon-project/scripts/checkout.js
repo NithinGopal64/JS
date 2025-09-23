@@ -52,7 +52,8 @@ function renderOrderSummary(){
                   
                   ${deliveryOptions[0].id === cartItem.deliveryOption ? "checked" : ''}
                     class="delivery-option-input"
-                    name="delivery-option-${matchingProduct.id}">
+                    name="delivery-option-${matchingProduct.id}"
+                    data-delivery-option-id="${deliveryOptions[0].id}">
                   <div>
                     <div class="delivery-option-date">
                       ${deliveryOptions[0].days}
@@ -65,7 +66,8 @@ function renderOrderSummary(){
                 <div class="delivery-option">
                   <input type="radio" ${deliveryOptions[1].id === cartItem.deliveryOption ? "checked" : ''}
                     class="delivery-option-input"
-                    name="delivery-option-${matchingProduct.id}">
+                    name="delivery-option-${matchingProduct.id}"
+                    data-delivery-option-id="${deliveryOptions[1].id}">
                   <div>
                     <div class="delivery-option-date">
                        ${deliveryOptions[1].days}
@@ -78,7 +80,8 @@ function renderOrderSummary(){
                 <div class="delivery-option">
                   <input type="radio" ${deliveryOptions[2].id === cartItem.deliveryOption ? "checked" : ''}
                     class="delivery-option-input"
-                    name="delivery-option-${matchingProduct.id}">
+                    name="delivery-option-${matchingProduct.id}"
+                    data-delivery-option-id="${deliveryOptions[2].id}">
                   <div>
                     <div class="delivery-option-date">
                        ${deliveryOptions[2].days}
@@ -96,6 +99,7 @@ function renderOrderSummary(){
 }
 
 renderOrderSummary();
+
 document.querySelector('.order-summary').innerHTML=html;
 if (totalCartItems()===1){
   document.querySelector('.return-to-home-link').innerText= totalCartItems() + ' item';
