@@ -94,13 +94,9 @@ function renderOrderSummary(){
               </div>
             </div>
           </div>`
-    
-});
-}
 
-renderOrderSummary();
 
-document.querySelector('.order-summary').innerHTML=html;
+          document.querySelector('.order-summary').innerHTML=html;
 if (totalCartItems()===1){
   document.querySelector('.return-to-home-link').innerText= totalCartItems() + ' item';
 }
@@ -118,9 +114,12 @@ const updateCartButtons = document.querySelectorAll('.js-update-cart');
 
 updateCartButtons.forEach((button)=>{
     button.addEventListener('click',()=>{
-      updateCart(button);
-      
+      updateCart(button);     
     })
+   })  
+});
+}
 
-   })
+renderOrderSummary();
+
 
